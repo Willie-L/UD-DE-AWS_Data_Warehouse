@@ -1,0 +1,12 @@
+# Exclude config file
+dwh.cfg
+
+# Exclude pycache
+__pycache__
+
+# Exclude misc
+.DS_Store
+settings.json
+
+# Exclude Jupyter
+*.ipynb
