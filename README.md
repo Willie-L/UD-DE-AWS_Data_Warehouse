@@ -58,7 +58,7 @@ log_data/2018/11/2018-11-13-events.json
 ```
 
 And below is a visual example of a log file.
-![log data](image location)
+![log data](images/log-data.png)
 
 ## Database Schema
 
