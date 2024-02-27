@@ -51,7 +51,7 @@ staging_songs_table_create = ("""  CREATE TABLE IF NOT EXISTS staging_songs (
                                         location      VARCHAR,
                                         artistName    VARCHAR,
                                         songId        CHAR(18),
-                                        title         VARCHAR,
+                                        title         TEXT,
                                         duration      DECIMAL,
                                         year          INTEGER
                                         );
