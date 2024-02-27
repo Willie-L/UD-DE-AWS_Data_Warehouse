@@ -51,7 +51,7 @@ staging_songs_table_create = ("""  CREATE TABLE IF NOT EXISTS staging_songs (
                                         location      VARCHAR,
                                         artistName    VARCHAR,
                                         songId        CHAR(18),
-                                        title         TEXT,
+                                        title         VARCHAR,
                                         duration      DECIMAL,
                                         year          INTEGER
                                         );
@@ -121,8 +121,7 @@ staging_songs_copy = (""" COPY staging_songs
                           FROM {}
                           IAM_ROLE {}
                           FORMAT JSON AS 'auto'
-                          REGION 'us-west-2'
-                          COMPUPDATE OFF;
+                          REGION 'us-west-2';
 """).format(SONG_DATA, ARN)
 
 # FINAL TABLES
