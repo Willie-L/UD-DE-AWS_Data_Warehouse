@@ -122,7 +122,7 @@ staging_songs_copy = (""" COPY staging_songs
                           IAM_ROLE {}
                           FORMAT JSON AS 'auto'
                           REGION 'us-west-2'
-                          COMPUPDATE ON;
+                          COMPUPDATE OFF;
 """).format(SONG_DATA, ARN)
 
 # FINAL TABLES
