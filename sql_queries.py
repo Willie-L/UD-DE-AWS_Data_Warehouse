@@ -161,7 +161,8 @@ song_table_insert = (""" INSERT INTO dimSong (song_id, title, artist_id, year,
                                 artistId,
                                 year,
                                 duration
-                         FROM staging_songs;
+                         FROM staging_songs
+                         WHERE songId IS NOT NULL;
 """)
 
 artist_table_insert = (""" INSERT INTO dimArtist (artist_id, name, location,
@@ -171,7 +172,8 @@ artist_table_insert = (""" INSERT INTO dimArtist (artist_id, name, location,
                                   location,
                                   latitude,
                                   longitude
-                           FROM staging_songs;
+                           FROM staging_songs
+                           WHERE artistId IS NOT NULL;
 """)
 
 time_table_insert = (""" INSERT INTO dimTime (start_time, hour, day, week,
@@ -187,7 +189,7 @@ time_table_insert = (""" INSERT INTO dimTime (start_time, hour, day, week,
                                 EXTRACT(week FROM tsConversion.tStamp),
                                 EXTRACT(month FROM tsConversion.tStamp),
                                 EXTRACT(year FROM tsConversion.tStamp),
-                                EXTRACT(day of week FROM tsConversion.tStamp)
+                                EXTRACT(dow FROM tsConversion.tStamp)
                          FROM tsConversion;
 """)
 
