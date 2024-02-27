@@ -7,6 +7,8 @@ __pycache__
 # Exclude misc
 .DS_Store
 settings.json
+images/log-json-path.png
 
 # Exclude Jupyter
 *.ipynb
+

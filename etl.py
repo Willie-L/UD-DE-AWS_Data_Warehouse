@@ -2,7 +2,6 @@ import configparser
 import psycopg2
 from sql_queries import copy_table_queries, insert_table_queries
 
-
 def load_staging_tables(cur, conn):
     """
     Description: This function is used to load the staging tables

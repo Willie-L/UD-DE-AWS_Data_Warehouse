@@ -84,7 +84,7 @@ The following files are included in the repository:
 - `sql_queries.py`: contains all the necessary SQL queries used in the python scripts.
 - `create_tables.py`: creates the staging tables as well as the fact and dimension tables that will be used by the analytics team.
 - `etl.py`: executes the ETL pipeline that will extract the JSON data from S3, insert it into the staging tables, then transform the data into the required set of analytics tables.
-- `dwh_.cfg`: an example configuration file that would hold such items like the credentials needed to connect and manipulate the database. <p style="color:red">This type of file should never be shared if it does contain this type of sensitive information.</p>
+- `dwh_.cfg`: an example configuration file that would hold such items like the credentials needed to connect and manipulate the database. This type of file should never be shared if it does contain this type of sensitive information.
 
 Each python script is ran in the terminal using the following command:
 
