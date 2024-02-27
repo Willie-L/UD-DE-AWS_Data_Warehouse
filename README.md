@@ -64,11 +64,11 @@ And below is a visual example of a log file.
 
 ### Staging tables
 
-![staging_tables]()
+![staging_tables](https://github.com/Willie-L/UD-DE-AWS_Data_Warehouse/tree/master/images/staging_tables.png)
 
 ### Fact and Dimension Tables
 
-![fact_and_dim_tables]()
+![fact_and_dim_tables](https://github.com/Willie-L/UD-DE-AWS_Data_Warehouse/tree/master/images/fact_and_dim_tables.png)
 
 **factSongplay:**
 
