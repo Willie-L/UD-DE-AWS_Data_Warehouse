@@ -44,16 +44,16 @@ staging_events_table_create = (""" CREATE TABLE IF NOT EXISTS staging_events (
 """)
 
 staging_songs_table_create = ("""  CREATE TABLE IF NOT EXISTS staging_songs (
-                                        numSongs      INTEGER,
-                                        artistId      CHAR(18),
-                                        latitude      DECIMAL,
-                                        longitude     DECIMAL,
-                                        location      VARCHAR,
-                                        artistName    VARCHAR,
-                                        songId        CHAR(18),
-                                        title         VARCHAR,
-                                        duration      DECIMAL,
-                                        year          INTEGER
+                                        num_songs            INTEGER,
+                                        artist_id            CHAR(18),
+                                        artist_latitude      DECIMAL,
+                                        artist_longitude     DECIMAL,
+                                        artist_location      VARCHAR,
+                                        artist_name          VARCHAR,
+                                        song_id              CHAR(18),
+                                        title                VARCHAR,
+                                        duration             DECIMAL,
+                                        year                 INTEGER
                                         );
 """)
 
@@ -90,7 +90,7 @@ song_table_create = ("""  CREATE TABLE IF NOT EXISTS dimSong (
 
 artist_table_create = (""" CREATE TABLE IF NOT EXISTS dimArtist (
                                    artist_id   CHAR(18) NOT NULL PRIMARY KEY,
-                                   name        CHAR(25) NOT NULL,
+                                   name        VARCHAR NOT NULL,
                                    location    VARCHAR,
                                    latitude    DECIMAL,
                                    longitude   DECIMAL
@@ -132,14 +132,14 @@ songplay_table_insert = (""" INSERT INTO factSongplay (start_time, user_id, leve
                              SELECT TIMESTAMP 'epoch' + staging_events.ts/1000 * interval '1 second',
                                     staging_events.userId,
                                     staging_events.level,
-                                    staging_songs.songId,
-                                    staging_songs.artistId,
+                                    staging_songs.song_id,
+                                    staging_songs.artist_id,
                                     staging_events.sessionId,
                                     staging_events.location,
                                     staging_events.userAgent
                               FROM staging_events
                               JOIN staging_songs ON staging_events.song=staging_songs.title
-                              AND staging_events.artist=staging_songs.artistName
+                              AND staging_events.artist=staging_songs.artist_name
                               WHERE staging_events.page = 'NextSong';
 """)
 
@@ -156,24 +156,24 @@ user_table_insert = (""" INSERT INTO dimUser (user_id, first_name, last_name,
 
 song_table_insert = (""" INSERT INTO dimSong (song_id, title, artist_id, year,
                                               duration)
-                         SELECT DISTINCT songId,
+                         SELECT DISTINCT song_id,
                                 title,
-                                artistId,
+                                artist_id,
                                 year,
                                 duration
                          FROM staging_songs
-                         WHERE songId IS NOT NULL;
+                         WHERE song_id IS NOT NULL;
 """)
 
 artist_table_insert = (""" INSERT INTO dimArtist (artist_id, name, location,
                                                   latitude, longitude)
-                           SELECT DISTINCT artistId,
-                                  artistName,
-                                  location,
-                                  latitude,
-                                  longitude
+                           SELECT DISTINCT artist_id,
+                                  artist_name,
+                                  artist_location,
+                                  artist_latitude,
+                                  artist_longitude
                            FROM staging_songs
-                           WHERE artistId IS NOT NULL;
+                           WHERE artist_id IS NOT NULL;
 """)
 
 time_table_insert = (""" INSERT INTO dimTime (start_time, hour, day, week,
